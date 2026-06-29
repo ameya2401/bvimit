@@ -1,4 +1,5 @@
 /* DO NOT CHANGE */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
@@ -42,94 +43,94 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* BVIMIT THEME - Maestro Image Extraction */
+/* BVIMIT THEME - Custom Request */
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem; /* Reverted to normal rounded for containers. Buttons are explicitly rounded-full */
 
-  /* Deep Ocean Light Mode Mapping */
-  --background: #F8F9FA; 
-  --foreground: #111827; 
-  --card: #FFFFFF;
-  --card-foreground: #111827;
-  --popover: #FFFFFF;
-  --popover-foreground: #111827;
+  /* Distinct Light Mode Background */
+  --background: #EAF0F6; 
+  --foreground: #1B1C1C; 
+  --card: #ffffff;
+  --card-foreground: #1B1C1C;
+  --popover: #ffffff;
+  --popover-foreground: #1B1C1C;
 
   /* Primary Accent & Brand Colors */
-  --primary: #0A9396; 
+  --primary: #000888; 
   --primary-foreground: #ffffff;
-  --secondary: #94D2BD; 
-  --secondary-foreground: #111827;
+  --secondary: #FDC003; 
+  --secondary-foreground: #000000;
+  
+  --muted: #F2F2F2;
+  --muted-foreground: #5a403f;
 
-  --muted: #E5E7EB;
-  --muted-foreground: #6B7280;
+  --accent: #181B23; 
+  --accent-foreground: #ffffff;
 
-  --accent: #94D2BD; 
-  --accent-foreground: #111827;
-
-  --destructive: #ef4444; 
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #0A9396;
+  --destructive: #ba1a1a; 
+  --border: #e4e2e2;
+  --input: #e4e2e2;
+  --ring: #000888;
 
   /* Charts */
-  --chart-1: #0A9396;
-  --chart-2: #111827;
-  --chart-3: #94D2BD;
-  --chart-4: #E9ECEF;
-  --chart-5: #38bdf8;
+  --chart-1: #000888;
+  --chart-2: #FDC003;
+  --chart-3: #181B23;
+  --chart-4: #F2F2F2;
+  --chart-5: #1B1C1C;
 
   /* Sidebar */
   --sidebar: #ffffff;
-  --sidebar-foreground: #111827;
-  --sidebar-primary: #0A9396;
+  --sidebar-foreground: #1B1C1C;
+  --sidebar-primary: #000888;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #E5E7EB;
-  --sidebar-accent-foreground: #111827;
-  --sidebar-border: #E5E7EB;
-  --sidebar-ring: #0A9396;
+  --sidebar-accent: #F2F2F2;
+  --sidebar-accent-foreground: #1B1C1C;
+  --sidebar-border: #e4e2e2;
+  --sidebar-ring: #000888;
 }
 
 .dark {
-  /* Deep Ocean Dark Mode Mapping (Inverted) */
-  --background: #111827; 
+  /* Deep Ocean Dark Mode Mapping (Inverted Minimalist) */
+  --background: #1A202C; 
   --foreground: #F8F9FA;
-  --card: #1F2937; 
+  --card: #2D3748; 
   --card-foreground: #F8F9FA;
   --popover: #1F2937;
   --popover-foreground: #F8F9FA;
 
-  --primary: #0A9396; 
+  --primary: #4f68ff; /* Lighter primary for dark mode visibility */
   --primary-foreground: #ffffff;
-  --secondary: #1F2937; 
-  --secondary-foreground: #F8F9FA;
+  --secondary: #FDC003; 
+  --secondary-foreground: #000000;
 
   --muted: #374151;
   --muted-foreground: #9CA3AF;
 
-  --accent: #0A9396; 
+  --accent: #181B23; 
   --accent-foreground: #ffffff;
 
   --destructive: #ef4444;
   --border: #374151;
   --input: #374151;
-  --ring: #0A9396;
+  --ring: #000888;
 
   /* Charts */
-  --chart-1: #0A9396;
-  --chart-2: #2A323D;
-  --chart-3: #ADB5BD;
-  --chart-4: #E9ECEF;
-  --chart-5: #38bdf8;
+  --chart-1: #000888;
+  --chart-2: #FDC003;
+  --chart-3: #181B23;
+  --chart-4: #374151;
+  --chart-5: #F8F9FA;
 
   /* Sidebar */
   --sidebar: #1F2937;
   --sidebar-foreground: #F8F9FA;
-  --sidebar-primary: #0A9396;
+  --sidebar-primary: #000888;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #374151;
   --sidebar-accent-foreground: #F8F9FA;
   --sidebar-border: #374151;
-  --sidebar-ring: #0A9396;
+  --sidebar-ring: #000888;
 }
 
 @layer base {
@@ -139,6 +140,14 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Human touch: Subtle ambient gradient */
+    background: radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 6%, var(--background)), var(--background) 70%),
+                radial-gradient(circle at bottom right, color-mix(in srgb, var(--secondary) 8%, var(--background)), var(--background) 70%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Serif 4', Georgia, serif;
   }
   button:not([disabled]),
   [role="button"]:not([disabled]) {
@@ -185,16 +194,25 @@
   .legacy-content .uk-card {
     overflow: hidden;
     border-radius: 1.5rem;
-    border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
-    background: color-mix(in srgb, var(--card) 96%, var(--background));
-    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+    border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+    /* Glassmorphism effect */
+    background: color-mix(in srgb, var(--card) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 0 1px rgba(15, 23, 42, 0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .legacy-content .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -5px rgba(15, 23, 42, 0.08), 0 0 1px rgba(15, 23, 42, 0.1);
   }
 
   .legacy-content .card-header,
   .legacy-content .uk-card-header {
     border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
-    background: color-mix(in srgb, var(--primary) 10%, transparent);
-    padding: 1rem 1.25rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    padding: 1.25rem 1.5rem;
   }
 
   .legacy-content .card-body,
@@ -216,17 +234,19 @@
   .legacy-content h5,
   .legacy-content h6 {
     color: var(--foreground);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    position: relative;
   }
 
   .legacy-content h2 {
-    font-size: clamp(1.75rem, 2vw, 2.5rem);
+    font-size: clamp(1.8rem, 2.5vw, 2.75rem);
+    margin-bottom: 1rem;
   }
 
   .legacy-content h3 {
-    font-size: clamp(1.3rem, 1.6vw, 1.85rem);
+    font-size: clamp(1.4rem, 1.8vw, 2rem);
   }
 
   .legacy-content p,
@@ -287,6 +307,12 @@
     max-width: 100%;
     height: auto;
     border-radius: 1rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
+  }
+  
+  .legacy-content img:hover {
+    transform: scale(1.02);
   }
 
   .legacy-content iframe {
@@ -299,6 +325,7 @@
   .legacy-content .img-fluid {
     width: 100%;
     border-radius: 1rem;
+    border: none !important;
   }
 
   .legacy-content .bg-light,
@@ -345,12 +372,22 @@
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
-    padding: 0.8rem 1.25rem;
-    font-size: 0.8rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
+    border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+    padding: 0.85rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .legacy-content .btn:hover,
+  .legacy-content button:hover,
+  .legacy-content input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px color-mix(in srgb, var(--primary) 20%, transparent);
+    border-color: color-mix(in srgb, var(--primary) 30%, transparent);
   }
 
   .legacy-content .btn-block,
@@ -361,23 +398,37 @@
   .legacy-content .table,
   .legacy-content table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     overflow: hidden;
     border-radius: 1rem;
-    border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    background: color-mix(in srgb, var(--card) 95%, transparent);
   }
 
   .legacy-content th,
   .legacy-content td {
-    padding: 0.75rem 0.9rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
     vertical-align: top;
+    transition: background-color 0.2s ease;
+  }
+
+  .legacy-content tr:last-child td {
+    border-bottom: none;
+  }
+
+  .legacy-content tbody tr:hover td {
+    background-color: color-mix(in srgb, var(--primary) 3%, transparent);
   }
 
   .legacy-content th {
-    background: color-mix(in srgb, var(--primary) 7%, transparent);
-    color: var(--foreground);
-    font-weight: 900;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
   }
 
   .legacy-content ul,
@@ -464,3 +515,20 @@
     }
   }
 }
+
+/* College Ticker Marquee Style */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   GraduationCap,
@@ -11,10 +12,16 @@ import {
   Users,
   Landmark,
   Award,
+  ChevronDown,
+  Layers,
+  MonitorPlay,
+  Download,
 } from "lucide-react";
 import SiteShell from "@/components/layout/SiteShell";
 
 export default function MCAAdmissionsPage() {
+  const [expandedSem, setExpandedSem] = useState<number | null>(0);
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -39,6 +46,74 @@ export default function MCAAdmissionsPage() {
     "Domicile Certificate / Nationality Proof",
     "Caste Certificate & Validity (if applicable)",
     "EWS / SEBC Certificate (if applicable)",
+  ];
+
+  const syllabusData = [
+    {
+      semester: "Semester I",
+      core: [
+        "MCA11 Mathematical Foundation for Computer Science 1",
+        "MCA12 Advanced Java",
+        "MCA13 Advanced Database Management System",
+        "MCA14 Software Project Management",
+      ],
+      labs: [
+        "MCAL11 Data Structure Lab",
+        "MCAL12 Advanced Java LAB",
+        "MCAL13 Advanced Database Management System LAB",
+        "MCAL14 Web Technologies",
+        "MCAP11 Mini Project – 1 A",
+      ]
+    },
+    {
+      semester: "Semester II",
+      core: [
+        "MCA21 Mathematical Foundation for Computer Science 2",
+        "MCA22 Artificial Intelligence and Machine Learning",
+        "MCA23 Information Security",
+      ],
+      electives: [
+        "MCAE24 Elective - 1 (Image Processing, IoT, RPA, Computer Vision, Embedded Systems)",
+        "MCAE25 Elective - 2 (NLP, GIS, DAA, Digital Marketing, Research Methodology)"
+      ],
+      labs: [
+        "MCAL21 AI and ML Lab",
+        "MCAL22 Soft Skill Development Lab",
+        "MCALE23 Elective 1 Lab",
+        "MCAL24 Skill based Lab Course AWT Lab",
+        "MCAL25 Skill based Lab Course User Interface Lab",
+        "MCAL26 Skill based Lab Course Networking with Linux Lab",
+        "MCAP21 Mini Project 1-B",
+      ]
+    },
+    {
+      semester: "Semester III",
+      core: [
+        "MCA31 Big Data Analytics and Visualization",
+        "MCA32 Distributed System and Cloud Computing",
+      ],
+      electives: [
+        "MCAE33 Elective - 3 (Blockchain, Deep Learning, Game Dev, Ethical Hacking, Quantum Computing)",
+        "MCAE34 Elective - 4 (IPR, Green Computing, MIS, Cyber Security and Digital Forensics, Entrepreneurship Management)"
+      ],
+      labs: [
+        "MCAL31 Big Data Analytics and Visualization Lab",
+        "MCAL32 Distributed System and Cloud Computing Lab",
+        "MCALE33 Elective 3 Lab",
+        "MCAL34 Skill based Lab Mobile Computing Lab",
+        "MCAL35 Software Testing Quality Assurance Lab",
+        "MCAP31 Mini Project: 2 A"
+      ]
+    },
+    {
+      semester: "Semester IV",
+      core: [
+        "MCAI41 Internship",
+        "MCAR42 Research Paper",
+        "MCAM43 Online Course - (MOOC)",
+        "MCAS44 Institute Social Responsibility"
+      ]
+    }
   ];
 
   return (
@@ -339,6 +414,127 @@ export default function MCAAdmissionsPage() {
               * Fees are subject to change as per FRA (Fees Regulating
               Authority) guidelines.
             </p>
+          </div>
+        </section>
+
+        {/* Programme Syllabus */}
+        <section className="py-24 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div {...fadeIn} className="text-center mb-16">
+              <h2 className="text-4xl font-black text-foreground tracking-tighter mb-4">
+                Programme <span className="text-primary italic">Syllabus</span>
+              </h2>
+              <p className="text-muted-foreground font-medium uppercase tracking-widest text-xs">
+                Comprehensive 4-Semester Curriculum
+              </p>
+            </motion.div>
+
+            <div className="max-w-4xl mx-auto space-y-4">
+              {syllabusData.map((sem, idx) => (
+                <motion.div
+                  key={idx}
+                  {...fadeIn}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm"
+                >
+                  <button
+                    onClick={() => setExpandedSem(expandedSem === idx ? null : idx)}
+                    className="w-full px-8 py-6 flex items-center justify-between bg-card hover:bg-muted/30 transition-colors"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="p-2 bg-primary/10 text-primary rounded-lg">
+                        <Layers className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-xl font-black text-foreground tracking-tight">
+                        {sem.semester}
+                      </h3>
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${expandedSem === idx ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: expandedSem === idx ? "auto" : 0, opacity: expandedSem === idx ? 1 : 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-8 pb-8 pt-2 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-border/50 bg-muted/10">
+                      {sem.core && (
+                        <div>
+                          <h4 className="text-sm font-black uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
+                            <BookOpen className="w-4 h-4" /> Core Subjects
+                          </h4>
+                          <ul className="space-y-3">
+                            {sem.core.map((item, i) => (
+                              <li key={i} className="text-muted-foreground text-sm font-medium flex items-start gap-2">
+                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {sem.electives && (
+                        <div>
+                          <h4 className="text-sm font-black uppercase tracking-widest text-secondary mb-4 flex items-center gap-2">
+                            <Award className="w-4 h-4" /> Electives
+                          </h4>
+                          <ul className="space-y-3">
+                            {sem.electives.map((item, i) => (
+                              <li key={i} className="text-muted-foreground text-sm font-medium flex items-start gap-2">
+                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-secondary/40 shrink-0" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {sem.labs && (
+                        <div className={sem.core && !sem.electives ? "md:col-span-1" : "md:col-span-2"}>
+                          <h4 className="text-sm font-black uppercase tracking-widest text-green-500 mb-4 flex items-center gap-2">
+                            <MonitorPlay className="w-4 h-4" /> Practical / Labs
+                          </h4>
+                          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {sem.labs.map((item, i) => (
+                              <li key={i} className="text-muted-foreground text-sm font-medium flex items-start gap-2">
+                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-green-500/40 shrink-0" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Download Resources */}
+            <motion.div {...fadeIn} id="syllabus" className="max-w-4xl mx-auto mt-12 bg-card p-8 rounded-3xl border border-border/50 shadow-sm">
+              <h3 className="text-lg font-black uppercase tracking-tight mb-6 flex items-center gap-3">
+                <FileText className="w-5 h-5 text-primary" /> Official Syllabus Documents
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { title: "NEP 2020 1st Year Syllabus", link: "/pdf/6.19-N-Master-of-Computer-Applications-Sem-I-II.pdf" },
+                  { title: "NEP 2020 2nd Year Syllabus", link: "/pdf/6.71N-MCA-Sem-III-IV.pdf" },
+                  { title: "MCA 1st & 2nd Year (w.e.f 20-21)", link: "/pdf/MCAsyllabus AC20-21UOM.pdf" }
+                ].map((doc, i) => (
+                  <a
+                    key={i}
+                    href={doc.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center justify-center p-6 rounded-2xl bg-muted/50 border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group text-center"
+                  >
+                    <Download className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-3 transition-colors" />
+                    <span className="text-sm font-bold text-foreground">{doc.title}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground mt-2 font-black">PDF Document</span>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </section>
 

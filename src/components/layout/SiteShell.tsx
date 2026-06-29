@@ -6,6 +6,8 @@ import InstitutionalHeader from "@/components/InstitutionalHeader";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 
+
+
 interface SiteShellProps {
   children: ReactNode;
   className?: string;

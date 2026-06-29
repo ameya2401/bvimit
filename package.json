@@ -15,7 +15,6 @@
     "preview:vite": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.8",
     "@convex-dev/auth": "^0.0.86",
     "@faker-js/faker": "^9.8.0",
     "@hookform/resolvers": "^5.0.1",
@@ -48,6 +47,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
+    "@supabase/supabase-js": "^2.49.8",
     "@tailwindcss/vite": "^4.1.8",
     "@types/three": "^0.177.0",
     "@zumer/snapdom": "^1.7.1",
@@ -65,6 +65,7 @@
     "lucide-react": "^0.511.0",
     "next": "^15.3.3",
     "next-themes": "^0.4.6",
+    "ogl": "^1.0.11",
     "oslo": "^1.2.1",
     "react": "^18.2.0",
     "react-day-picker": "9.8.1",
@@ -82,8 +83,8 @@
     "zod": "^3.25.46"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.8",
     "@eslint/js": "^9.25.0",
+    "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^22.15.29",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.0",

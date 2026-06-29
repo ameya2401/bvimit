@@ -46,66 +46,78 @@ export default function Navbar() {
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="hidden xl:flex items-center space-x-1 2xl:space-x-3 flex-wrap justify-center flex-1">
+          <div className="hidden xl:flex items-center space-x-1 2xl:space-x-2 flex-wrap justify-center flex-1">
             {primaryNavigationItems.map((item) => {
               if (item.children?.length || item.groups?.length) {
                 return (
                   <div
                     key={item.label}
-                    className="relative group"
-                    onMouseEnter={() => setActiveDropdown(item.label)}
-                    onMouseLeave={() => setActiveDropdown(null)}
+                    className="relative"
+                    onMouseEnter={() => {
+                      setActiveDropdown(item.label);
+                    }}
+                    onMouseLeave={() => {
+                      setActiveDropdown(null);
+                    }}
                     ref={activeDropdown === item.label ? dropdownRef : null}
                   >
-                    <button className="flex items-center gap-1 text-foreground/70 hover:text-primary font-bold text-[10px] 2xl:text-xs uppercase tracking-widest px-1.5 py-2 rounded-md transition-all duration-200">
+                    <button className="relative flex items-center gap-1.5 text-foreground/80 hover:text-primary dark:hover:text-[#FDC003] font-bold text-[10px] 2xl:text-[11px] uppercase tracking-wider px-3 py-2 rounded-lg transition-all duration-300 hover:bg-muted/50">
                       {item.label}
                       <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                          activeDropdown === item.label ? "rotate-180" : ""
+                        className={`w-3.5 h-3.5 transition-transform duration-300 text-muted-foreground ${
+                          activeDropdown === item.label ? "rotate-180 text-primary dark:text-[#FDC003]" : ""
                         }`}
                       />
+                      {activeDropdown === item.label && (
+                        <motion.span
+                          layoutId="navUnderline"
+                          className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-primary to-[#FDC003] rounded-full"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
                     </button>
 
                     <AnimatePresence>
                       {activeDropdown === item.label ? (
                         <motion.div
-                          initial={{ opacity: 0, y: 10 }}
+                          initial={{ opacity: 0, y: 15 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 5 }}
-                          className={`absolute top-full mt-0 bg-popover text-popover-foreground rounded-b-2xl shadow-2xl border border-border p-4 ${
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                          className={`absolute top-full mt-1 bg-popover/95 backdrop-blur-xl text-popover-foreground rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-border/80 p-5 z-[150] ${
                             item.menuVariant === "mega"
-                              ? "left-0 w-[600px]"
+                              ? "left-0 w-[550px]"
                               : item.menuVariant === "more"
-                              ? "right-0 w-[900px]"
-                              : "left-0 min-w-[260px]"
+                              ? "right-0 w-[920px]"
+                              : "left-0 min-w-[280px]"
                           }`}
                         >
                           <div
                             className={
                               item.menuVariant === "mega"
-                                ? "grid grid-cols-2 gap-4"
+                                ? "grid grid-cols-2 gap-5"
                                 : item.menuVariant === "more"
                                 ? "grid grid-cols-4 gap-6"
-                                : "flex flex-col gap-1"
+                                : "flex flex-col gap-1.5"
                             }
                           >
                             {item.groups ? (
                               item.groups.map((group) => (
                                 <div key={group.label} className="flex flex-col gap-2">
-                                  <h3 className="text-xs font-black uppercase text-primary border-b border-border/50 pb-2 mb-2">{group.label}</h3>
+                                  <h3 className="text-[10px] font-black uppercase text-primary dark:text-[#FDC003] tracking-widest border-b border-border/60 pb-2 mb-2">{group.label}</h3>
                                   <div className="flex flex-col gap-1">
                                     {group.links.map((child) => (
                                       <Link
                                         href={child.href}
                                         key={child.label}
                                         onClick={() => setActiveDropdown(null)}
-                                        className="group/drop flex items-center gap-2 p-2 rounded-xl hover:bg-primary/5 transition-all"
+                                        className="group/drop flex items-center gap-3 p-2.5 rounded-xl hover:bg-primary/5 dark:hover:bg-white/5 transition-all duration-200"
                                       >
-                                        <div className="p-1.5 rounded-lg bg-primary/10 text-primary group-hover/drop:bg-primary group-hover/drop:text-white transition-colors">
-                                          <child.icon className="w-3.5 h-3.5" />
+                                        <div className="p-2 rounded-lg bg-primary/10 text-primary dark:bg-white/10 dark:text-[#FDC003] group-hover/drop:bg-primary group-hover/drop:text-white dark:group-hover/drop:bg-[#FDC003] dark:group-hover/drop:text-background transition-colors duration-250">
+                                          <child.icon className="w-4 h-4" />
                                         </div>
                                         <div>
-                                          <h4 className="font-bold text-[10px] uppercase tracking-wide text-foreground group-hover/drop:text-primary">
+                                          <h4 className="font-bold text-[11px] uppercase tracking-wide text-foreground group-hover/drop:text-primary dark:group-hover/drop:text-[#FDC003]">
                                             {child.label}
                                           </h4>
                                         </div>
@@ -120,13 +132,13 @@ export default function Navbar() {
                                   href={child.href}
                                   key={child.label}
                                   onClick={() => setActiveDropdown(null)}
-                                  className="group/drop flex items-center gap-3 p-2.5 rounded-xl hover:bg-primary/5 transition-all"
+                                  className="group/drop flex items-center gap-3.5 p-3 rounded-xl hover:bg-primary/5 dark:hover:bg-white/5 transition-all duration-200"
                                 >
-                                  <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover/drop:bg-primary group-hover/drop:text-white transition-colors">
-                                    <child.icon className="w-4 h-4" />
+                                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary dark:bg-white/10 dark:text-[#FDC003] group-hover/drop:bg-primary group-hover/drop:text-white dark:group-hover/drop:bg-[#FDC003] dark:group-hover/drop:text-background transition-colors duration-250">
+                                    <child.icon className="w-4.5 h-4.5" />
                                   </div>
                                   <div>
-                                    <h4 className="font-bold text-xs uppercase tracking-wide text-foreground group-hover/drop:text-primary">
+                                    <h4 className="font-bold text-xs uppercase tracking-wide text-foreground group-hover/drop:text-primary dark:group-hover/drop:text-[#FDC003]">
                                       {child.label}
                                     </h4>
                                   </div>
@@ -145,7 +157,7 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-foreground/70 hover:text-primary font-bold text-[10px] 2xl:text-xs uppercase tracking-widest px-1.5 py-2 rounded-md transition-all duration-200 flex items-center justify-center"
+                  className="relative text-foreground/80 hover:text-primary dark:hover:text-[#FDC003] font-bold text-[10px] 2xl:text-[11px] uppercase tracking-wider px-3 py-2 rounded-lg transition-all duration-300 hover:bg-muted/50 flex items-center justify-center"
                 >
                   {item.icon ? <item.icon className="w-5 h-5" /> : item.label}
                 </Link>
