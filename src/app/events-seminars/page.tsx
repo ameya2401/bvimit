@@ -4,6 +4,7 @@ import SiteShell from "@/components/layout/SiteShell";
 import { ArrowRight, ArrowLeft, Calendar, FileText } from "lucide-react";
 import Image from "next/image";
 import eventsData from "@/data/events.json";
+import { getCloudAsset } from "@/lib/cloudinary";
 
 export default function EventsSeminarsPage() {
   return (
@@ -34,7 +35,7 @@ export default function EventsSeminarsPage() {
               >
                 <div className="relative aspect-video w-full bg-muted/50 border-b border-border/50">
                   <Image 
-                    src={event.image || '/images/gallery/default-event.jpg'} 
+                    src={getCloudAsset(event.image) || '/images/gallery/default-event.jpg'} 
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"

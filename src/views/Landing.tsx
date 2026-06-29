@@ -22,18 +22,35 @@ import {
 import { useEffect, useState } from "react";
 import AboutTabs from "@/components/landing/AboutTabs";
 import visionMissionImg from "../../image.png";
+import { supabase } from "@/lib/supabase";
+import { getCloudAsset } from "@/lib/cloudinary";
 
 export default function Landing() {
+  // Database State for Announcements
+  const [announcements, setAnnouncements] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchAnnouncements() {
+      const { data } = await supabase
+        .from("documents")
+        .select("*")
+        .eq("category", "pdf_document")
+        .order("created_at", { ascending: false })
+        .limit(5);
+      if (data) setAnnouncements(data);
+    }
+    fetchAnnouncements();
+  }, []);
   // Carousel State
   const [activeSlide, setActiveSlide] = useState(0);
   const slides = [
     {
-      img: "/images/carousel/2.jpg",
+      img: getCloudAsset("/images/carousel/2.jpg"),
       title: "Accredited & Affiliated",
       subtitle: "BVIMIT provides top-tier education affiliated with Mumbai University"
     },
     {
-      img: "/images/carousel/1.jpg",
+      img: getCloudAsset("/images/carousel/1.jpg"),
       title: "Vibrant Campus Life",
       subtitle: "Empowering students through state-of-the-art infrastructure"
     }
@@ -198,10 +215,15 @@ export default function Landing() {
           </div>
           <div className="flex-grow overflow-hidden relative w-full h-10">
             <div className="absolute whitespace-nowrap animate-marquee flex gap-16 items-center h-full text-base font-bold">
-              <a href="/pdf/Provisnal Marit List 2025-26.pdf" className="hover:text-primary transition-colors">Provisional Merit List 2025-26 Released</a>
-              <a href="/pdf/Ph.D.-Advt.-for-2025-26_BVIMIT (2).pdf" className="hover:text-primary transition-colors">PhD Computer Application Advertisement</a>
-              <a href="/pdf/Anti Raggin Committee.pdf" className="hover:text-primary transition-colors">Anti Ragging Committee Notification</a>
-              <a href="/pdf/spoc-nptel.pdf" className="hover:text-primary transition-colors">SPOC for NPTEL Local Chapter Details</a>
+              {announcements.length > 0 ? (
+                announcements.map((doc) => (
+                  <a key={doc.id} href={doc.file_url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    {doc.title}
+                  </a>
+                ))
+              ) : (
+                <span className="text-muted-foreground animate-pulse">Fetching latest notifications...</span>
+              )}
             </div>
           </div>
         </div>

@@ -13,13 +13,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getCloudAsset } from "@/lib/cloudinary";
 
 const tabs = [
   {
     id: "founder",
     label: "Founder's Message",
     icon: UserPlus,
-    image: "/images/about/ceo.jpg",
+    image: getCloudAsset("/images/about/ceo.jpg"),
     title: "Dr. Patangrao Kadam",
     subtitle: "Founder, Bharati Vidyapeeth Deemed University",
     content: (
@@ -46,7 +47,7 @@ const tabs = [
     id: "principal",
     label: "Principal's Message",
     icon: GraduationCap,
-    image: "/images/about/principal.jpg",
+    image: getCloudAsset("/images/about/principal.jpg"),
     title: "Dr. Suhasini Vijaykumar",
     subtitle: "M.C.A, Ph. D. | Principal, BVIMIT",
     content: (
@@ -76,7 +77,7 @@ const tabs = [
     id: "events",
     label: "Events",
     icon: Calendar,
-    image: "/images/about/events.jpg",
+    image: getCloudAsset("/images/about/events.jpg"),
     title: "Vibrant Campus Life",
     subtitle: "Activities that shape personalities",
     content: (
@@ -95,21 +96,21 @@ const tabs = [
     id: "scholarship",
     label: "Scholarship",
     icon: Award,
-    image: "/images/about/events.jpg", // Fallback if no scholarship specific image
+    image: getCloudAsset("/images/about/events.jpg"), // Fallback if no scholarship specific image
     title: "Empowering Futures",
     subtitle: "Financial assistance & awards",
     content: (
       <div className="space-y-4 mb-6">
         <a href="https://fellowship.aicte.gov.in/" target="_blank" rel="noreferrer" className="flex items-start gap-3 p-3 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-colors">
-          <img src="/images/about/newred.gif" alt="New" className="mt-1 w-8" />
+          <img src={getCloudAsset("/images/about/newred.gif")} alt="New" className="mt-1 w-8" />
           <span className="font-semibold text-foreground">Click Here for AICTE Fellowship/Scholarships Details!</span>
         </a>
         <a href="https://aicte.gov.in/schemes/students-development-schemes" target="_blank" rel="noreferrer" className="flex items-start gap-3 p-3 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-colors">
-          <img src="/images/about/newred.gif" alt="New" className="mt-1 w-8" />
+          <img src={getCloudAsset("/images/about/newred.gif")} alt="New" className="mt-1 w-8" />
           <span className="font-semibold text-foreground">Click Here for Students Development Schemes Details!</span>
         </a>
         <a href="/pdf/Scholarships.pdf" target="_blank" rel="noreferrer" className="flex items-start gap-3 p-3 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-colors">
-          <img src="/images/about/newred.gif" alt="New" className="mt-1 w-8" />
+          <img src={getCloudAsset("/images/about/newred.gif")} alt="New" className="mt-1 w-8" />
           <span className="font-semibold text-foreground">Click Here for Aaple Sarkar DBT Portal (Direct Benefit Transfer) Scholarships Details 2025-2026!</span>
         </a>
       </div>
@@ -120,7 +121,7 @@ const tabs = [
     id: "students",
     label: "Student's Corner",
     icon: Users,
-    image: "/images/about/students.jpg",
+    image: getCloudAsset("/images/about/students.jpg"),
     title: "Student Centric Institute",
     subtitle: "Empowering students with resources",
     content: (
@@ -130,11 +131,11 @@ const tabs = [
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <a href="#" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary/10 text-primary font-bold hover:bg-primary hover:text-primary-foreground transition-colors border border-primary/20">
-            <img src="/images/about/newred.gif" alt="New" className="w-6" />
+            <img src={getCloudAsset("/images/about/newred.gif")} alt="New" className="w-6" />
             Student Handbook
           </a>
           <a href="#" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary/10 text-primary font-bold hover:bg-primary hover:text-primary-foreground transition-colors border border-primary/20">
-            <img src="/images/about/newred.gif" alt="New" className="w-6" />
+            <img src={getCloudAsset("/images/about/newred.gif")} alt="New" className="w-6" />
             Technical Magazine
           </a>
         </div>
@@ -146,7 +147,7 @@ const tabs = [
     id: "library",
     label: "Library",
     icon: BookOpen,
-    image: "/images/about/library.jpg",
+    image: getCloudAsset("/images/about/library.jpg"),
     title: "Rich Collection",
     subtitle: "Knowledge hub of BVIMIT",
     content: (

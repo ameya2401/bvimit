@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             { protocol: 'https', hostname: 'images.unsplash.com' },
             { protocol: 'https', hostname: 'bvimit.co.in' },
-            { protocol: 'https', hostname: 'tour.panoee.net' }
+            { protocol: 'https', hostname: 'tour.panoee.net' },
+            { protocol: 'https', hostname: 'res.cloudinary.com' }
         ]
     }
 };
