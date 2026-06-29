@@ -45,12 +45,12 @@ export default function Landing() {
   const [activeSlide, setActiveSlide] = useState(0);
   const slides = [
     {
-      img: getCloudAsset("/images/carousel/2.jpg"),
+      img: "/assets/images/bvimit_campus.jpg",
       title: "Accredited & Affiliated",
       subtitle: "BVIMIT provides top-tier education affiliated with Mumbai University"
     },
     {
-      img: getCloudAsset("/images/carousel/1.jpg"),
+      img: "/assets/images/campusbanner.jpg",
       title: "Vibrant Campus Life",
       subtitle: "Empowering students through state-of-the-art infrastructure"
     }

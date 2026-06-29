@@ -20,7 +20,7 @@ const tabs = [
     id: "founder",
     label: "Founder's Message",
     icon: UserPlus,
-    image: getCloudAsset("/images/about/ceo.jpg"),
+    image: "/assets/images/campusbanner.jpg",
     title: "Dr. Patangrao Kadam",
     subtitle: "Founder, Bharati Vidyapeeth Deemed University",
     content: (
@@ -47,7 +47,7 @@ const tabs = [
     id: "principal",
     label: "Principal's Message",
     icon: GraduationCap,
-    image: getCloudAsset("/images/about/principal.jpg"),
+    image: "/assets/images/bvcop_campus.jpg",
     title: "Dr. Suhasini Vijaykumar",
     subtitle: "M.C.A, Ph. D. | Principal, BVIMIT",
     content: (
@@ -77,7 +77,7 @@ const tabs = [
     id: "events",
     label: "Events",
     icon: Calendar,
-    image: getCloudAsset("/images/about/events.jpg"),
+    image: "/assets/images/bvimit_campus.jpg",
     title: "Vibrant Campus Life",
     subtitle: "Activities that shape personalities",
     content: (
@@ -96,7 +96,7 @@ const tabs = [
     id: "scholarship",
     label: "Scholarship",
     icon: Award,
-    image: getCloudAsset("/images/about/events.jpg"), // Fallback if no scholarship specific image
+    image: "/assets/images/bvimit_campus.jpg", // Fallback if no scholarship specific image
     title: "Empowering Futures",
     subtitle: "Financial assistance & awards",
     content: (
@@ -121,7 +121,7 @@ const tabs = [
     id: "students",
     label: "Student's Corner",
     icon: Users,
-    image: getCloudAsset("/images/about/students.jpg"),
+    image: "/assets/images/campusbanner.jpg",
     title: "Student Centric Institute",
     subtitle: "Empowering students with resources",
     content: (
@@ -147,7 +147,7 @@ const tabs = [
     id: "library",
     label: "Library",
     icon: BookOpen,
-    image: getCloudAsset("/images/about/library.jpg"),
+    image: "/assets/images/bvcop_campus.jpg",
     title: "Rich Collection",
     subtitle: "Knowledge hub of BVIMIT",
     content: (
